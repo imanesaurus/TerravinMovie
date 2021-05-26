@@ -122,6 +122,7 @@ const Home = () => {
           button
           buttonLabel="TAMPILKAN"
           buttonOnpress={toastHandler}
+          setToastShow={() => setDataIsUpdate(false)}
         />
       )}
     </View>

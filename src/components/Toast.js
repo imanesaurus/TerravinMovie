@@ -2,7 +2,14 @@ import React, {useRef} from 'react';
 import {Button, StyleSheet, Text, Animated} from 'react-native';
 import {Colors, Sizes} from '../constants/theme';
 
-const Toast = ({text1, button, type, buttonLabel, buttonOnpress}) => {
+const Toast = ({
+  text1,
+  button,
+  type,
+  buttonLabel,
+  buttonOnpress,
+  setToastShow,
+}) => {
   const slideAnim = useRef(new Animated.Value(50)).current;
 
   const slideIn = () =>
@@ -24,6 +31,7 @@ const Toast = ({text1, button, type, buttonLabel, buttonOnpress}) => {
     if (button) {
       // slideout after 5s
       setTimeout(() => slideOut(), 5000);
+      setTimeout(() => setToastShow(), 6000);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
