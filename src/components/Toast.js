@@ -5,11 +5,29 @@ import {Colors, Sizes} from '../constants/theme';
 const Toast = ({text1, button, type, buttonLabel, buttonOnpress}) => {
   const slideAnim = useRef(new Animated.Value(50)).current;
 
-  Animated.spring(slideAnim, {
-    toValue: 0,
-    duration: 2000,
-    useNativeDriver: true,
-  }).start();
+  const slideIn = () =>
+    Animated.spring(slideAnim, {
+      toValue: 0,
+      duration: 2000,
+      useNativeDriver: true,
+    }).start();
+
+  const slideOut = () =>
+    Animated.spring(slideAnim, {
+      toValue: 60,
+      duration: 2000,
+      useNativeDriver: true,
+    }).start();
+
+  React.useEffect(() => {
+    slideIn();
+    if (button) {
+      // slideout after 5s
+      setTimeout(() => slideOut(), 5000);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Animated.View
